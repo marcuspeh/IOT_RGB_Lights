@@ -3,7 +3,7 @@
 This project is mainly split into 3 parts in their respective branches
 - Server [(branch)](https://github.com/marcuspeh/IOT_RGB_Lights/tree/server)
 - App [(branch)](https://github.com/marcuspeh/IOT_RGB_Lights/tree/app)
-- ESP8266 [(branch)](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
+- ESP8266 [(branch)]](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
 
 ## Foreword
 This is developed based on what I wanted the RGB lights on my desk to do. It used as a replacement for Blynk (discontinued version).
