@@ -4,5 +4,6 @@ enum DeviceMode {
     SOUND_REACTIVE = 2,
     FADE = 3
   }
+
 export default DeviceMode;
   
