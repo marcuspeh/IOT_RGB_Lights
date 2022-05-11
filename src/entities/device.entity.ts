@@ -22,6 +22,9 @@ export default class Device {
   @Column({ type: 'int', default: 0 }) // Need to restrict to 0 - 255
   blue: number;
 
+  @Column({ type: 'int', default: 0 }) // Need to restrict to 0 - 255
+  brightness: number;
+
   @Column({ type: 'timestamptz', default: () => 'NOW()', })
   date_created: Date;
 

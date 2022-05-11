@@ -2,8 +2,8 @@ import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import { getRepository, Repository } from 'typeorm';
 import deviceEntity from '../entities/device.entity';
-import isDeviceModeValid from '../entities/validators/isDeviceModeValid';
-import isColorValid from '../entities/validators/isColorValid';
+import isDeviceModeValid from './validators/isDeviceModeValid';
+import isColorValid from './validators/isColorValid';
 import * as HttpStatus from 'http-status-codes';
 
 const routerOpts: Router.IRouterOptions = {
@@ -61,22 +61,25 @@ router.patch('/:device_id', async (ctx:Koa.Context) => {
   }
 
   // Check if mode is correct
-  if (!isDeviceModeValid(ctx.request.body.mode)) {
+  if (ctx.request.body.mode && !isDeviceModeValid(ctx.request.body.mode)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   } 
 
-  // Check if color range is correct
-  if (!isColorValid(ctx.request.body.red)) {
+  // Check if color is correct
+  if (ctx.request.body.red && !isColorValid(ctx.request.body.red)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   }
-  if (!isColorValid(ctx.request.body.green)) {
+  if (ctx.request.body.green && !isColorValid(ctx.request.body.green)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   }
-  if (!isColorValid(ctx.request.body.blue)) {
+  if (ctx.request.body.blue && !isColorValid(ctx.request.body.blue)) {
+    ctx.throw(HttpStatus.BAD_REQUEST);
+  }
+  if (ctx.request.body.brightness && !isColorValid(ctx.request.body.brightness)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   }
 
-  // Update the row for the following columns: red, green, blue, mode
+  // Update the row for the following columns: red, green, blue, mode, brightness
   var updatedDevice = device;
   if (ctx.request.body.mode)
     updatedDevice = await deviceRepo.merge(device, {'mode': ctx.request.body.mode});
@@ -86,6 +89,8 @@ router.patch('/:device_id', async (ctx:Koa.Context) => {
     updatedDevice = await deviceRepo.merge(device, {'green': ctx.request.body.green});
   if (ctx.request.body.blue)
     updatedDevice = await deviceRepo.merge(device, {'blue': ctx.request.body.blue});
+  if (ctx.request.body.brightness)
+    updatedDevice = await deviceRepo.merge(device, {'brightness': ctx.request.body.brightness});
 
   // Persists the data in the database.
   deviceRepo.save(updatedDevice);
