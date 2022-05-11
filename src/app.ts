@@ -3,7 +3,7 @@ import * as HttpStatus from 'http-status-codes';
 import * as bodyParser from 'koa-bodyparser';
 import * as dotenv from 'dotenv';
 
-import movieController from './device/device.controller';
+import movieController from './controllers/deviceController';
 
 
 dotenv.config();

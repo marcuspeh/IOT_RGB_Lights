@@ -1,11 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
-export enum deviceMode {
-  OFF = 0,
-  NORMAL_LIGHT = 1,
-  SOUND_REACTIVE = 2,
-  FADE = 3
-}
+import DeviceMode from './deviceMode';
 
 @Entity()
 export default class Device {
@@ -16,8 +10,8 @@ export default class Device {
   @Column("varchar", { length: 255 })
   name: string;
 
-  @Column({ type: 'enum', enum: deviceMode, default: deviceMode.OFF })
-  mode: deviceMode;
+  @Column({ type: 'enum', enum: DeviceMode, default: DeviceMode.OFF })
+  mode: DeviceMode;
 
   @Column({ type: 'int', default: 0 }) // Need to restrict to 0 - 255
   red: number;
