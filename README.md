@@ -5,9 +5,6 @@ This project is mainly split into 3 parts in their respective branches
 - App [(branch)](https://github.com/marcuspeh/IOT_RGB_Lights/tree/app)
 - ESP8266 [(branch)]](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
 
-## Foreword
-This is developed based on what I wanted the RGB lights on my desk to do. It used as a replacement for Blynk (discontinued version).
-
 ## Server
 Branch: [server](https://github.com/marcuspeh/IOT_RGB_Lights/tree/server)
 
@@ -17,12 +14,24 @@ This provides API endpoints for both server and the microcontroller to interact 
 - TypeORM
 - Postgres
 
-## App
-Branch: [app]](https://github.com/marcuspeh/IOT_RGB_Lights/tree/app)
+## Running the server
+Prerequisite: nodejs, postgres
 
-This is used to register for a new device on the server as well as to send commands for the microcontroller.
+1) Installed the required dependency with `npm install`
+2) Create a `env` file at the root with the following: 
+```
+DB_HOST = "db_host_goes_here"
+DB_PORT = "db_port_goes_here"
+DB_USERNAME = "db_username_goes_here"
+DB_PASSWORD = "db_password_goes_here"
+DB_NAME = "db_name_goes_here"
+```
+3) Run the postgres server
+4) Run the server with `npm start`
 
-## ESP8266
-Branch: [ESP8266]](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
-
-The codes is used for ESP8266 and uploaded using Arduino IDE.
+## API
+| End points | Method | Desription |
+| --- | --- | --- | 
+| /api/device | POST | Registers a new device |
+| /api/device/:device_id | GET | Gets the info for the specified device |
+| /api/device/:device_id | PATCH | Updates the info for the specified device |
