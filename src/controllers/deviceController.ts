@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import { getRepository, Repository } from 'typeorm';
-import deviceEntity from '../entities/device.entity';
+import deviceEntity from '../entities/deviceEntity';
 import isDeviceModeValid from './validators/isDeviceModeValid';
 import isColorValid from './validators/isColorValid';
 import * as HttpStatus from 'http-status-codes';

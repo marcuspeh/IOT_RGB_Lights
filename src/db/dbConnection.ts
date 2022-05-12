@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { createConnection, Connection, ConnectionOptions } from 'typeorm';
 import { join } from 'path';
+import device from '../entities/deviceEntity'
 const parentDir = join(__dirname, '..');
 
 const connectionOpts: ConnectionOptions = {
@@ -11,7 +12,7 @@ const connectionOpts: ConnectionOptions = {
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'rgb',
   entities: [
-    `${parentDir}/**/*.entity.ts`,
+    device
   ],
   synchronize: true,
 };

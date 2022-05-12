@@ -32,6 +32,7 @@ DB_NAME = "db_name_goes_here"
 ## API
 | End points | Method | Desription |
 | --- | --- | --- | 
+| /api | GET | Test if the server is up |
 | /api/device | POST | Registers a new device |
 | /api/device/:device_id | GET | Gets the info for the specified device |
 | /api/device/:device_id | PATCH | Updates the info for the specified device |

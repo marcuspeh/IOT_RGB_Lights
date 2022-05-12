@@ -4,6 +4,7 @@ import * as bodyParser from 'koa-bodyparser';
 import * as dotenv from 'dotenv';
 
 import movieController from './controllers/deviceController';
+import wakeupController from './controllers/wakeupController';
 
 
 dotenv.config();
@@ -25,6 +26,8 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 });
 
 // Routes
+app.use(wakeupController.routes());
+app.use(wakeupController.allowedMethods());
 app.use(movieController.routes());
 app.use(movieController.allowedMethods());
 
