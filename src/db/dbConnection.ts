@@ -10,8 +10,11 @@ const connectionOpts: ConnectionOptions = {
   ],
   synchronize: true,
   logging: true,
+  ssl: true,
   extra: {
-    ssl: true
+    ssl: {
+      rejectUnauthorized: false
+    }
   }
 };
 
