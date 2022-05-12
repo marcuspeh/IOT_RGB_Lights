@@ -7,7 +7,7 @@
     "lint": "tslint --project tsconfig.json --format stylish",
     "build": "tsc",
     "serve": "ts-node src/server.ts",
-    "start": "nodemon",
+    "start": "npm install && nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -42,5 +42,8 @@
   },
   "dependencies": {
     "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
