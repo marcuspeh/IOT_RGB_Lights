@@ -60,36 +60,38 @@ router.patch('/:device_id', async (ctx:Koa.Context) => {
     ctx.throw(HttpStatus.NOT_FOUND);
   }
 
+  console.log(ctx.request.body.mode)
+
   // Check if mode is correct
-  if (ctx.request.body.mode && !isDeviceModeValid(ctx.request.body.mode)) {
+  if (ctx.request.body.mode != undefined && !isDeviceModeValid(ctx.request.body.mode)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   } 
 
   // Check if color is correct
-  if (ctx.request.body.red && !isColorValid(ctx.request.body.red)) {
+  if (ctx.request.body.red != undefined && !isColorValid(ctx.request.body.red)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   }
-  if (ctx.request.body.green && !isColorValid(ctx.request.body.green)) {
+  if (ctx.request.body.green != undefined && !isColorValid(ctx.request.body.green)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   }
-  if (ctx.request.body.blue && !isColorValid(ctx.request.body.blue)) {
+  if (ctx.request.body.blue != undefined && !isColorValid(ctx.request.body.blue)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   }
-  if (ctx.request.body.brightness && !isColorValid(ctx.request.body.brightness)) {
+  if (ctx.request.body.brightness != undefined && !isColorValid(ctx.request.body.brightness)) {
     ctx.throw(HttpStatus.BAD_REQUEST);
   }
 
   // Update the row for the following columns: red, green, blue, mode, brightness
   var updatedDevice = device;
-  if (ctx.request.body.mode)
+  if (ctx.request.body.mode != undefined)
     updatedDevice = await deviceRepo.merge(device, {'mode': ctx.request.body.mode});
-  if (ctx.request.body.red)
+  if (ctx.request.body.red != undefined)
     updatedDevice = await deviceRepo.merge(device, {'red': ctx.request.body.red});
-  if (ctx.request.body.green)
+  if (ctx.request.body.green != undefined)
     updatedDevice = await deviceRepo.merge(device, {'green': ctx.request.body.green});
-  if (ctx.request.body.blue)
+  if (ctx.request.body.blue != undefined)
     updatedDevice = await deviceRepo.merge(device, {'blue': ctx.request.body.blue});
-  if (ctx.request.body.brightness)
+  if (ctx.request.body.brightness != undefined)
     updatedDevice = await deviceRepo.merge(device, {'brightness': ctx.request.body.brightness});
 
   // Persists the data in the database.
