@@ -1,8 +1,9 @@
 enum DeviceMode {
     OFF = 0,
     NORMAL_LIGHT = 1,
-    SOUND_REACTIVE = 2,
-    FADE = 3
+    MOVING_LIGHTS = 2,
+    SOUND_REACTIVE = 3,
+    TWINKLE = 4
   }
 
 export default DeviceMode;
