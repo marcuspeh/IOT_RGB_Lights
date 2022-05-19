@@ -18,11 +18,11 @@ This provides API endpoints for both server and the microcontroller to interact 
 - Postgres
 
 ## App
-Branch: [app]](https://github.com/marcuspeh/IOT_RGB_Lights/tree/app)
+Branch: [app](https://github.com/marcuspeh/IOT_RGB_Lights/tree/app)
 
 This is used to register for a new device on the server as well as to send commands for the microcontroller.
 
 ## ESP8266
-Branch: [ESP8266]](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
+Branch: [ESP8266](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
 
 The codes is used for ESP8266 and uploaded using Arduino IDE.
