@@ -3,7 +3,7 @@
 This project is mainly split into 3 parts in their respective branches
 - Server [(branch)](https://github.com/marcuspeh/IOT_RGB_Lights/tree/server)
 - App [(branch)](https://github.com/marcuspeh/IOT_RGB_Lights/tree/app)
-- ESP8266 [(branch)]](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
+- ESP8266 [(branch)](https://github.com/marcuspeh/IOT_RGB_Lights/tree/esp8266)
 
 ## Server
 Branch: [server](https://github.com/marcuspeh/IOT_RGB_Lights/tree/server)
@@ -18,7 +18,7 @@ This provides API endpoints for both server and the microcontroller to interact 
 Prerequisite: nodejs, postgres
 
 1) Installed the required dependency with `npm install`
-2) Create a `env` file at the root with the following: 
+2) Create a `.env` file at root with the following: 
 ```
 DB_HOST = "db_host_goes_here"
 DB_PORT = "db_port_goes_here"

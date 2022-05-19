@@ -1,17 +1,14 @@
-import * as Koa from 'koa';
-import * as Router from 'koa-router';
+import * as Koa from 'koa'
 
-const routerOpts: Router.IRouterOptions = {
-    prefix: '/api',
-  };
-  
-const router: Router = new Router(routerOpts);
+class WakeupController {
 
-// GET /api
-router.get('/', async (ctx:Koa.Context) => {
-    ctx.body = {
-        data: 'Hello World',
-    };
-});
+    public async serverAliveResponse(ctx:Koa.Context) {
+        // Simple response to show server is alive
+        ctx.body = {
+            data: 'Hello World',
+        }
+    }
 
-export default router;
+}
+
+export default new WakeupController()
