@@ -1,23 +1,18 @@
 import 'reflect-metadata';
-import { createConnection, Connection, ConnectionOptions } from 'typeorm';
+import { DataSource } from 'typeorm';
 import device from '../entities/deviceEntity'
+import * as dotenv from 'dotenv'
 
-const connectionOpts: ConnectionOptions = {
-  type: 'postgres',
-  url: process.env.DATABASE_URL,
-  entities: [
-    device
-  ],
-  synchronize: true,
-  logging: true,
-  ssl: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false
-    }
-  }
-};
-
-const connection:Promise<Connection> = createConnection(connectionOpts);
-
-export default connection;
+dotenv.config()
+export const dataSource = new DataSource({
+    type: 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    port: Number(process.env.DB_PORT) || 5432,
+    username: process.env.DB_USERNAME || 'postgres',
+    password: process.env.DB_PASSWORD || 'postgres',
+    database: process.env.DB_NAME || 'rgb',
+    entities: [
+            device
+    ],
+    synchronize: true,
+})

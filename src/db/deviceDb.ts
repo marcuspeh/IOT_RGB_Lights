@@ -2,11 +2,12 @@ import { getRepository, Repository } from 'typeorm'
 import deviceEntity from '../entities/deviceEntity'
 import { validate } from "class-validator";
 import isDeviceModeValid from '../entities/validators/isDeviceModeValid';
+import { dataSource } from '../services/dbConnection';
 
 class DeviceDb {
 
     public async createNewDevice(name: string) {
-        const deviceRepo:Repository<deviceEntity> = getRepository(deviceEntity)
+        const deviceRepo:Repository<deviceEntity> = dataSource.getRepository(deviceEntity)
 
         // Create a new Device row using only name
         const device = deviceRepo.create({ name: name })
@@ -18,7 +19,7 @@ class DeviceDb {
     }
 
     public async getDeviceInfo(id: string) {
-        const deviceRepo:Repository<deviceEntity> = getRepository(deviceEntity)
+        const deviceRepo:Repository<deviceEntity> = dataSource.getRepository(deviceEntity)
 
         // Find a row based on the device_id given in the header.
         const device = await deviceRepo.findOneBy({ id: id })
@@ -31,7 +32,7 @@ class DeviceDb {
 
     public async updateDeviceinfo(id: string, mode: number|undefined, red: number|undefined, 
                 green: number|undefined, blue: number|undefined, brightness: number|undefined) {
-        const deviceRepo:Repository<deviceEntity> = getRepository(deviceEntity)
+        const deviceRepo:Repository<deviceEntity> = dataSource.getRepository(deviceEntity)
 
         // Find a row based on the device_id given in the header.
         const device = await deviceRepo.findOneBy({ id: id })

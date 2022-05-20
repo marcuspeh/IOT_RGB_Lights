@@ -1,11 +1,9 @@
 import * as Koa from 'koa'
 import * as HttpStatus from 'http-status-codes'
 import * as bodyParser from 'koa-bodyparser'
-import * as dotenv from 'dotenv'
 
 import routes from './routes'
 
-dotenv.config()
 const app:Koa = new Koa()
 
 // Middleware

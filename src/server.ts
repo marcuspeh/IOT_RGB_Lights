@@ -1,10 +1,10 @@
 import app from './app'
-import databaseConnection from './services/dbConnection'
+import { dataSource } from './services/dbConnection'
 
 const PORT:number = Number(process.env.PORT) || 3000
 
 // Connect to db
-databaseConnection
+dataSource.initialize()
     .then(() => {
         app.listen(PORT)
         console.log(`Listening on port ${PORT}...`)
