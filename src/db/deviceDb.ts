@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm'
 import deviceEntity from '../entities/deviceEntity'
-import isDeviceModeValid from './utils/isDeviceModeValid'
-import isColorValid from './utils/isColorValid'
+import { validate } from "class-validator";
+import isDeviceModeValid from '../entities/validators/isDeviceModeValid';
 
 class DeviceDb {
 
@@ -38,17 +38,9 @@ class DeviceDb {
     
         // If no device found
         if (!device) throw new Error('Device not found')
-    
+
         // Check if mode is correct
-        if (mode != undefined && !isDeviceModeValid(mode)) throw new Error("Mode is invalid. Must be between 0 to 2 (inclusive).")
-    
-        // Check if color is correct
-        if (red != undefined && !isColorValid(red)) throw new Error("Red is invalid. Must be between 0 to 255 (inclusive).")
-        if (green != undefined && !isColorValid(green)) throw new Error("Green is invalid. Must be between 0 to 255 (inclusive).")
-        if (blue != undefined && !isColorValid(blue)) throw new Error("Blue is invalid. Must be between 0 to 255 (inclusive).")
-        
-        // Check if bightness is correct
-        if (brightness != undefined && !isColorValid(brightness)) throw new Error("Brightness is invalid. Must be between 0 to 255 (inclusive).")
+        if (mode != undefined && !isDeviceModeValid(mode)) throw new Error("Mode is invalid.")
     
         // Update the row for the following columns: red, green, blue, mode, brightness
         var updatedDevice = device
@@ -63,8 +55,13 @@ class DeviceDb {
         if (brightness != undefined)
             updatedDevice = await deviceRepo.merge(device, {'brightness': brightness})
     
-        // Persists the data in the database.
-        deviceRepo.save(updatedDevice)
+        // Validate device
+        const errors = await validate(updatedDevice)
+        if (errors.length > 0) {
+            throw new Error(`Validation failed!`);
+        } else {
+            deviceRepo.save(updatedDevice)
+        }
 
         return updatedDevice
     }
